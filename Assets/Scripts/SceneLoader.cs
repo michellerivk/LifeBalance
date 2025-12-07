@@ -9,17 +9,9 @@ public class SceneLoader : MonoBehaviour
         AudioManager.instance.PlayTitle(); // Play the title music
     }
     */
-    public void SwitchToFirstLevel() 
+    public void SwitchToLevel()
     {
-        SceneManager.LoadScene("FirstLevelScene");
-    }
-    public void SwitchToSecondLevel()
-    {
-        SceneManager.LoadScene("SecondLevelScene");
-    }
-    public void SwitchToThirdLevel()
-    {
-        SceneManager.LoadScene("ThirdLevelScene");
+        SceneManager.LoadScene("LevelScene");
     }
     public void SwitchToMainMenu()
     {
