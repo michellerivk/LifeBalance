@@ -15,4 +15,15 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+
+    private void PlayerLost(int points)
+    {
+        HighscoreManager.TryUpdateHighscore(points); // Update the highscore
+
+        int newHighScore = HighscoreManager.GetHighScore(); // Get the new highscore
+
+        // TODO: add a visual (text or something) that shows 'newHighScore'
+
+    }
 }

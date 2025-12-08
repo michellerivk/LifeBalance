@@ -12,13 +12,14 @@ public static class HighscoreManager
         return PlayerPrefs.GetInt(HighScoreKey, 0); 
     }
 
-    public static void UpdateHighscore(int newScore)
+    public static void TryUpdateHighscore(int newScore)
     {
         int currentHighscore = GetHighScore();
         if (currentHighscore < newScore) // If the new score is greater than the current highscore
         {
             PlayerPrefs.SetInt(HighScoreKey, newScore); // Insert the new score inside the save file
             PlayerPrefs.Save(); // Save the new data
+            Debug.Log("Highscore Changed");
         }
     }
 }
