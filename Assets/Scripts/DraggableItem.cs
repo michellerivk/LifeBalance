@@ -53,6 +53,7 @@ public class DraggableItem : MonoBehaviour
 
         Vector3 mouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPos.z = transform.position.z;
+
         transform.position = mouseWorldPos + _dragOffset;
     }
 
