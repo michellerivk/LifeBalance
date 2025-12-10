@@ -4,11 +4,16 @@ public class CameraFollowPeak : MonoBehaviour
 {
     [SerializeField] private StackManager stackManager;
 
-    [SerializeField] private float yOffset = 2f;
+    [Header("Where to place peak on screen")]
+    [Range(0f, 1f)]
+    [SerializeField] private float peakViewportY = 0.85f; // 0.5 = center
+    //[SerializeField] private float yOffset = 2f;      // Older- delete after testing screen flip
     [SerializeField] private float followSpeed = 3f;
 
+    [Header("Clamp downwards")]
     [SerializeField] private bool clampMinY = true;     // ensuring it does not exceed range limit
     [SerializeField] private float minY = 0f;
+    [SerializeField] private Camera Cam;
 
     private float _targetY;
 
@@ -36,11 +41,31 @@ public class CameraFollowPeak : MonoBehaviour
 
     private void HandleMaxHeightChanged(float maxHeight)
     {
-        float desired = maxHeight + yOffset;
-        if (clampMinY)
-            desired = Mathf.Max(desired, minY);
+        /// <summary>
+        /// The camera now follows up to ViewportY manually set, so the camera won't move too high where the UI is.
+        /// should work or Horizontal and Vertical (math won't break), need to test after implementing.
+        /// </summary>
 
-        _targetY = desired;
+
+        float ortho = Cam.orthographicSize;
+
+        // Offset from camera center to where we want the peak to appear
+        float offset = (peakViewportY - 0.5f) * 2f * ortho;
+
+        // Solve for cameraY so that maxHeight appears at peakViewportY
+        float desiredCamY = maxHeight - offset;
+
+        if (clampMinY)
+            desiredCamY = Mathf.Max(desiredCamY, minY);
+
+        _targetY = desiredCamY;
+
+        // Older- delete after testing screen flip
+        //float desired = maxHeight + yOffset;
+        //if (clampMinY)
+        //    desired = Mathf.Max(desired, minY);
+
+        //_targetY = desired;
     }
 
     private void LateUpdate()
@@ -51,43 +76,3 @@ public class CameraFollowPeak : MonoBehaviour
     }
 }
 
-
-//using UnityEngine;
-
-//public class CameraFollowPeak : MonoBehaviour
-//{
-//    [SerializeField] private StackManager stackManager;
-
-//    [SerializeField] private float yOffset = 2f;      // how far above the peak to stay
-//    [SerializeField] private float followSpeed = 3f;  // smoothing
-
-//    [SerializeField] private bool clampMinY = true;
-//    [SerializeField] private float minY = 0f;         // don't go below this Y
-
-//    private void LateUpdate()
-//    {
-//        // Find all items currently in the scene
-//        BalanceItem[] items = FindObjectsOfType<BalanceItem>();
-//        if (items.Length == 0)
-//            return;
-
-//        // Find max Y among them
-//        float maxY = items[0].transform.position.y;
-//        for (int i = 1; i < items.Length; i++)
-//        {
-//            float y = items[i].transform.position.y;
-//            if (y > maxY)
-//                maxY = y;
-//        }
-
-//        float targetY = maxY + yOffset;
-
-//        if (clampMinY)
-//            targetY = Mathf.Max(targetY, minY);
-
-//        // Smoothly move camera's Y toward targetY
-//        Vector3 pos = transform.position;
-//        pos.y = Mathf.Lerp(pos.y, targetY, followSpeed * Time.deltaTime);
-//        transform.position = pos;
-//    }
-//}

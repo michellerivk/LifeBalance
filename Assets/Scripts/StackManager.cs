@@ -1,6 +1,7 @@
-using UnityEngine;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
+//using static UnityEngine.GraphicsBuffer;
 
 public class StackManager : MonoBehaviour
 {
@@ -14,13 +15,13 @@ public class StackManager : MonoBehaviour
     private void OnEnable()
     {
         BalanceItem.OnItemEnabled += HandleItemEnabled;
-        BalanceItem.OnItemDisabled += HandleItemDisabled;
+        //BalanceItem.OnItemDisabled += HandleItemDisabled;
     }
 
     private void OnDisable()
     {
         BalanceItem.OnItemEnabled -= HandleItemEnabled;
-        BalanceItem.OnItemDisabled -= HandleItemDisabled;
+        //BalanceItem.OnItemDisabled -= HandleItemDisabled;
     }
 
     private void HandleItemEnabled(BalanceItem item)
@@ -28,17 +29,17 @@ public class StackManager : MonoBehaviour
         if (!_items.Contains(item))
         {
             _items.Add(item);
-            RecalculateMaxHeight();
+            //RecalculateMaxHeight();
         }
     }
 
-    private void HandleItemDisabled(BalanceItem item)
-    {
-        if (_items.Remove(item))
-        {
-            RecalculateMaxHeight();
-        }
-    }
+    //private void HandleItemDisabled(BalanceItem item)
+    //{
+    //    if (_items.Remove(item))
+    //    {
+    //        //RecalculateMaxHeight();
+    //    }
+    //}
 
     private void RecalculateMaxHeight()
     {
@@ -64,5 +65,10 @@ public class StackManager : MonoBehaviour
         {
             OnMaxHeightChanged?.Invoke(MaxHeight);
         }
+    }
+
+    private void LateUpdate()
+    {
+        RecalculateMaxHeight();
     }
 }

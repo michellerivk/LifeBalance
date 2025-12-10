@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: BookData
   m_EditorClassIdentifier: Assembly-CSharp::BalanceItemData
   itemId: Book
-  prefab: {fileID: 3364415665464349776, guid: dd62e0490fb4f4d4191d577ac379749c, type: 3}
+  worldPrefab: {fileID: 3364415665464349776, guid: dd62e0490fb4f4d4191d577ac379749c, type: 3}
+  iconSprite: {fileID: 0}
   score: 1

@@ -4,6 +4,7 @@ using UnityEngine;
 public class BalanceItemData : ScriptableObject
 {
     public string itemId;
-    public GameObject prefab;
+    public GameObject worldPrefab;
+    public Sprite iconSprite;
     public int score = 1;
 }

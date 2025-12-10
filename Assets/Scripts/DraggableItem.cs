@@ -1,69 +1,59 @@
-using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class DraggableItem : MonoBehaviour
 {
-    [HideInInspector] public ItemSlot originSlot;
-
     private bool _isDragging = false;
-    private bool _hasNotifiedSlot = false;
-
     private Vector3 _dragOffset;
-    private Camera _cam;
     private Rigidbody2D _rb;
+    private Camera _cam;
 
-    private void Awake()
+    public void Initialize(Camera cam)
     {
-        _cam = Camera.main;
-        _rb = GetComponent<Rigidbody2D>();
+        _cam = cam;
+        if (_rb == null)
+            _rb = GetComponent<Rigidbody2D>();
 
-        if (_rb != null)
-        {
-            _rb.bodyType = RigidbodyType2D.Kinematic; // start as kinematic so it doesn't fall immediately
-        }
+        _rb.bodyType = RigidbodyType2D.Kinematic; // start under our control
     }
 
-    private void OnMouseDown()
+    public void BeginDrag(Vector2 screenPos)
     {
-        Debug.Log("DEBUG: Enter OnMouseClick");
+        if (_cam == null) _cam = Camera.main;
+        if (_rb == null) _rb = GetComponent<Rigidbody2D>();
+
         _isDragging = true;
 
-        // notify slot only once, first time this item is picked up
-        if (!_hasNotifiedSlot && originSlot != null)
-        {
-            originSlot.OnItemTaken();
-            _hasNotifiedSlot = true;
-        }
+        _rb.linearVelocity = Vector2.zero;
+        _rb.angularVelocity = 0f;
+        _rb.bodyType = RigidbodyType2D.Kinematic;
 
-        if (_rb != null)
-        {
-            _rb.linearVelocity = Vector2.zero;
-            _rb.angularVelocity = 0f;
-            _rb.bodyType = RigidbodyType2D.Kinematic;
-        }
-
-        Vector3 mouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
-        mouseWorldPos.z = transform.position.z;
-        _dragOffset = transform.position - mouseWorldPos;
+        Vector3 worldPos = ScreenToWorld(screenPos);
+        worldPos.z = transform.position.z;
+        _dragOffset = transform.position - worldPos;
     }
 
-    private void OnMouseDrag()
+    public void Drag(Vector2 screenPos)
     {
         if (!_isDragging) return;
 
-        Vector3 mouseWorldPos = _cam.ScreenToWorldPoint(Input.mousePosition);
-        mouseWorldPos.z = transform.position.z;
-
-        transform.position = mouseWorldPos + _dragOffset;
+        Vector3 worldPos = ScreenToWorld(screenPos);
+        worldPos.z = transform.position.z;
+        transform.position = worldPos + _dragOffset;
     }
 
-    private void OnMouseUp()
+    public void EndDrag()
     {
         _isDragging = false;
+        //if (_rb == null) _rb = GetComponent<Rigidbody2D>();   // extra safety
+        _rb.bodyType = RigidbodyType2D.Dynamic; // physics takes over
+    }
 
-        if (_rb != null)
-        {
-            _rb.bodyType = RigidbodyType2D.Dynamic; // let physics take over, it can fall/stack
-        }
+    private Vector3 ScreenToWorld(Vector2 screenPos)
+    {
+        // For 2D: camera usually at z = -10, world at z = 0
+        float distance = -_cam.transform.position.z;
+        Vector3 sp = new Vector3(screenPos.x, screenPos.y, distance);
+        return _cam.ScreenToWorldPoint(sp);
     }
 }

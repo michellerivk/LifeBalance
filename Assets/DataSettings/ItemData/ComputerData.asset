@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: ComputerData
   m_EditorClassIdentifier: Assembly-CSharp::BalanceItemData
   itemId: Computer
-  prefab: {fileID: 5688348653958833032, guid: ddcc4744b9d8918488a2d3978e990ac9, type: 3}
+  worldPrefab: {fileID: 5688348653958833032, guid: ddcc4744b9d8918488a2d3978e990ac9, type: 3}
+  iconSprite: {fileID: 0}
   score: 1

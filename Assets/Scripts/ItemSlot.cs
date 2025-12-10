@@ -22,7 +22,7 @@ public class ItemSlot : MonoBehaviour
         var data = database.GetRandom();
         if (data == null) return;
 
-        _spawnedItem = Instantiate(data.prefab, spawnPoint.position, Quaternion.identity);
+        _spawnedItem = Instantiate(data.worldPrefab, spawnPoint.position, Quaternion.identity);
 
         // parent under slot so it moves with UI/world element if needed
         // _spawnedItem.transform.SetParent(transform);
@@ -30,7 +30,7 @@ public class ItemSlot : MonoBehaviour
         var draggable = _spawnedItem.GetComponent<DraggableItem>();
         if (draggable != null)
         {
-            draggable.originSlot = this;
+            //draggable.originSlot = this;
         }
     }
 
