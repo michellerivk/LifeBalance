@@ -198,4 +198,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5894678cfb6ebcd49ab6a47677f12a16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableItem
-  originSlot: {fileID: 0}

@@ -17,7 +17,7 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         if (worldCamera == null)
             worldCamera = Camera.main;
 
-        RollNewItem();
+        //RollNewItem();
     }
 
     private void RollNewItem()
@@ -59,7 +59,7 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         _currentItem.BeginDrag(eventData.position);
 
         // Immediately roll next item for the slot UI
-        RollNewItem();
+        //RollNewItem(); // If the item that was dragged out wasn't placed in a vallid place, dont roll a new item yet
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -86,5 +86,21 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         Vector3 world = worldCamera.ScreenToWorldPoint(sp);
         world.z = 0f; // your 2D plane
         return world;
+    }
+
+    // Lets the Game Manager control the data
+    public void SetData(BalanceItemData data)
+    {
+        _currentData = data;
+
+        if (data == null)
+        {
+            iconImage.enabled = false;
+        }
+        else
+        {
+            iconImage.enabled = true;
+            iconImage.sprite = data.iconSprite;
+        }
     }
 }
