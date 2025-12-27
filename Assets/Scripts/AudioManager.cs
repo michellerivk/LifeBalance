@@ -1,12 +1,14 @@
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
     [SerializeField] private AudioSource _titleMusic;
     [SerializeField] private AudioSource[] _sfx;
-    [SerializeField] private AudioSource _bg; // Ideally built for more than 1 Background tune
+    [SerializeField] private AudioSource _bg;
     [SerializeField] private bool isMusicMuted = false;
     [SerializeField] private bool isSFXMuted = false;
 
@@ -26,7 +28,7 @@ public class AudioManager : MonoBehaviour
             sfx.mute = isSFXMuted;
         }
 
-        _bg.mute = isMusicMuted;
+        _bg.mute = isSFXMuted;
         _titleMusic.mute = isMusicMuted;
     }
 
@@ -34,10 +36,14 @@ public class AudioManager : MonoBehaviour
     {
         _titleMusic.Play();
     }
+    public void StartGameMusic()
+    {
+        StopTitle();
+        PlayBG();
+    }
     public void StopTitle() // Stop the title music (after hitting play)
     {
-        _titleMusic.Stop();
-        //_titleMusic.volume = 0f; // If stop doesnt work for some reason
+        _titleMusic.mute = true; // If stop doesnt work for some reason
     }
 
     public void LowerTitle() // Lower the title music (in the settings for example)
@@ -63,7 +69,7 @@ public class AudioManager : MonoBehaviour
         PlaySFX(sfxToPlay);
     }
 
-    public void PlayBG(int bgToPlay) // Play background music after hitting start
+    public void PlayBG() // Play background music after hitting start
     {
         _bg.Stop();
         _bg.Play();
@@ -72,8 +78,12 @@ public class AudioManager : MonoBehaviour
     public void ToggleMuteMusic()
     {
         isMusicMuted = !isMusicMuted; // Flip the boolean state
-        _titleMusic.mute = isMusicMuted; // Mute/Unmute the AudioSource (_titleMusic)
-        _bg.mute = isMusicMuted; // Mute / Unmute the backgroundMusic
+
+        if (SceneManager.GetActiveScene().name == "MainMenuScene")
+            _titleMusic.mute = isMusicMuted; // Mute/Unmute the AudioSource (_titleMusic)
+
+        if (SceneManager.GetActiveScene().name == "LevelScene")
+            _bg.mute = isMusicMuted; // Mute / Unmute the backgroundMusic
         Debug.Log("Music Muted: " + isMusicMuted);
     }
 

@@ -3,12 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    /* For later
     private void Start()
     {
         AudioManager.instance.PlayTitle(); // Play the title music
     }
-    */
+
     public void SwitchToLevel()
     {
         SceneManager.LoadScene("LevelScene");
