@@ -54,6 +54,8 @@ public class FallZone : MonoBehaviour
 
         int newHighScore = HighscoreManager.GetHighScore(); // Get the new highscore
 
+        _playerLost.text = $"Highscore: {newHighScore}";
+
         _playerLost.gameObject.SetActive(true);
 
         // TODO: add a visual (text or something) that shows 'newHighScore'
