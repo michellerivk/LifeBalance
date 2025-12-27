@@ -6,8 +6,9 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     [SerializeField] private AudioSource _titleMusic;
     [SerializeField] private AudioSource[] _sfx;
-    [SerializeField] private AudioSource[] _bg; // Ideally built for more than 1 Background tune
-    [SerializeField] private bool isMuted = false;
+    [SerializeField] private AudioSource _bg; // Ideally built for more than 1 Background tune
+    [SerializeField] private bool isMusicMuted = false;
+    [SerializeField] private bool isSFXMuted = false;
 
     public void Awake()
     {
@@ -19,11 +20,24 @@ public class AudioManager : MonoBehaviour
         }
         else
             Destroy(gameObject);
+
+        foreach (AudioSource sfx in _sfx)
+        {
+            sfx.mute = isSFXMuted;
+        }
+
+        _bg.mute = isMusicMuted;
+        _titleMusic.mute = isMusicMuted;
     }
 
     public void PlayTitle() // Play main menu music
     {
         _titleMusic.Play();
+    }
+    public void StopTitle() // Stop the title music (after hitting play)
+    {
+        _titleMusic.Stop();
+        //_titleMusic.volume = 0f; // If stop doesnt work for some reason
     }
 
     public void LowerTitle() // Lower the title music (in the settings for example)
@@ -34,12 +48,6 @@ public class AudioManager : MonoBehaviour
     public void IncreaseTitle() // Increase the title music (after closing the settings for example)
     {
         _titleMusic.volume = 0.6f;
-    }
-
-    public void StopTitle() // Stop the title music (after hitting play)
-    {
-        _titleMusic.Stop();
-        //_titleMusic.volume = 0f; // If stop doesnt work for some reason
     }
 
     public void PlaySFX(int sfxToPlay) // Dragging an item, item dropping, cracks on the floor etc...
@@ -57,14 +65,27 @@ public class AudioManager : MonoBehaviour
 
     public void PlayBG(int bgToPlay) // Play background music after hitting start
     {
-        _bg[bgToPlay].Stop();
-        _bg[bgToPlay].Play();
+        _bg.Stop();
+        _bg.Play();
     }
 
-    public void ToggleMute()
+    public void ToggleMuteMusic()
     {
-        isMuted = !isMuted; // Flip the boolean state
-        _titleMusic.mute = isMuted; // Mute/Unmute the AudioSource (_titleMusic)
-        Debug.Log("Music Muted: " + isMuted);
+        isMusicMuted = !isMusicMuted; // Flip the boolean state
+        _titleMusic.mute = isMusicMuted; // Mute/Unmute the AudioSource (_titleMusic)
+        _bg.mute = isMusicMuted; // Mute / Unmute the backgroundMusic
+        Debug.Log("Music Muted: " + isMusicMuted);
+    }
+
+    public void ToggleMuteSFX()
+    {
+        isSFXMuted = !isSFXMuted; // Flip the boolean state
+
+        foreach (var sfx in _sfx)
+        {
+            sfx.mute = isSFXMuted;
+        }
+
+        Debug.Log("SFX Muted: " + isSFXMuted);
     }
 }
