@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource _titleMusic;
     [SerializeField] private AudioSource[] _sfx;
     [SerializeField] private AudioSource[] _bg; // Ideally built for more than 1 Background tune
+    [SerializeField] private bool isMuted = false;
 
     public void Awake()
     {
@@ -57,5 +59,12 @@ public class AudioManager : MonoBehaviour
     {
         _bg[bgToPlay].Stop();
         _bg[bgToPlay].Play();
+    }
+
+    public void ToggleMute()
+    {
+        isMuted = !isMuted; // Flip the boolean state
+        _titleMusic.mute = isMuted; // Mute/Unmute the AudioSource (_titleMusic)
+        Debug.Log("Music Muted: " + isMuted);
     }
 }
