@@ -41,7 +41,7 @@ public class FallZone : MonoBehaviour
 
             Debug.Log("Game Over");
 
-            int points = 0; // keep 0 for now, or we’ll hook score later
+            int points = CalculateStackScore();
 
             PlayerLost(points);
         }
@@ -60,5 +60,32 @@ public class FallZone : MonoBehaviour
 
         // TODO: add a visual (text or something) that shows 'newHighScore'
 
+    }
+
+    private int CalculateStackScore()
+    {
+        int total = 0;
+
+        // Find all BalanceItems currently in the scene.
+
+        BalanceItem[] allItems = Object.FindObjectsByType<BalanceItem>(FindObjectsSortMode.None);
+        
+        foreach (var item in allItems)
+        {
+            if (item == null) continue;
+
+            // Exclude fallen items
+            if (counted.Contains(item.GetInstanceID()))
+                continue;
+
+            // Exclude kinematic items
+            Rigidbody2D rb = item.GetComponent<Rigidbody2D>();
+            if (rb == null || rb.bodyType != RigidbodyType2D.Dynamic)
+                continue;
+
+            total += item.Score;
+        }
+
+        return total;
     }
 }
