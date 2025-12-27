@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BalanceItemData
   itemId: Book
   worldPrefab: {fileID: 3364415665464349776, guid: dd62e0490fb4f4d4191d577ac379749c, type: 3}
-  iconSprite: {fileID: 0}
+  iconSprite: {fileID: 7931629167351049000, guid: bb4a4f2fdecb7ec439ebf48e8c0b38c0, type: 3}
   score: 1
