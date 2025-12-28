@@ -57,9 +57,6 @@ public class FallZone : MonoBehaviour
         _playerLost.text = $"Highscore: {newHighScore}";
 
         _playerLost.gameObject.SetActive(true);
-
-        // TODO: add a visual (text or something) that shows 'newHighScore'
-
     }
 
     private int CalculateStackScore()
