@@ -68,6 +68,12 @@ public class AudioManager : MonoBehaviour
 
         PlaySFX(sfxToPlay);
     }
+    public void PlayLowerSFXVolume(int sfxToPlay, float newVol) // Changing the pitch on a sound that you hear over and over
+    {
+        _sfx[sfxToPlay].volume = newVol;
+
+        PlaySFX(sfxToPlay);
+    }
 
     public void PlayBG() // Play background music after hitting start
     {
@@ -80,7 +86,10 @@ public class AudioManager : MonoBehaviour
         isMusicMuted = !isMusicMuted; // Flip the boolean state
 
         if (SceneManager.GetActiveScene().name == "MainMenuScene")
+        {
             _titleMusic.mute = isMusicMuted; // Mute/Unmute the AudioSource (_titleMusic)
+            _bg.mute = isMusicMuted;
+        }
 
         if (SceneManager.GetActiveScene().name == "LevelScene")
             _bg.mute = isMusicMuted; // Mute / Unmute the backgroundMusic

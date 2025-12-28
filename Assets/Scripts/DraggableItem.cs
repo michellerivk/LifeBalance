@@ -24,6 +24,9 @@ public class DraggableItem : MonoBehaviour
 
         _isDragging = true;
 
+        AudioManager.instance.PlayLowerSFXVolume(5, 0.3f);
+        AudioManager.instance.PlaySFXPitchAdjusted(5);
+
         _rb.linearVelocity = Vector2.zero;
         _rb.angularVelocity = 0f;
         _rb.bodyType = RigidbodyType2D.Kinematic;
