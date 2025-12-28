@@ -153,9 +153,12 @@ public class AudioManager : MonoBehaviour
 
     public void PlayLowerSFXVolume(int sfxToPlay, float newVol)
     {
-        if (_sfx == null || sfxToPlay < 0 || sfxToPlay >= _sfx.Length) return;
+        if (_sfx == null || sfxToPlay < 0 || sfxToPlay >= _sfx.Length) 
+            return;
+
         var src = _sfx[sfxToPlay];
-        if (src == null) return;
+        if (src == null) 
+            return;
 
         src.volume = newVol;
         PlaySFX(sfxToPlay);
