@@ -8,6 +8,7 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     [SerializeField] private Image iconImage;
     [SerializeField] private Transform worldParent;
     [SerializeField] private Camera worldCamera;
+    [SerializeField] private GameObject _popupWindow;
 
     private BalanceItemData _currentData;
     private DraggableItem _currentItem;
@@ -47,19 +48,22 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
             return;
 
         // Instantiate world object at pointer position
-        Vector3 startWorldPos = ScreenToWorld(eventData.position);
-        GameObject go = Instantiate(_currentData.worldPrefab, startWorldPos, Quaternion.identity, worldParent);
+        if (!_popupWindow.gameObject.activeInHierarchy)
+        {
+            Vector3 startWorldPos = ScreenToWorld(eventData.position);
+            GameObject go = Instantiate(_currentData.worldPrefab, startWorldPos, Quaternion.identity, worldParent);
 
-        var draggable = go.GetComponent<DraggableItem>();
-        if (draggable == null)
-            draggable = go.AddComponent<DraggableItem>();
+            var draggable = go.GetComponent<DraggableItem>();
+            if (draggable == null)
+                draggable = go.AddComponent<DraggableItem>();
 
-        draggable.Initialize(worldCamera);
-        _currentItem = draggable;
-        _currentItem.BeginDrag(eventData.position);
+            draggable.Initialize(worldCamera);
+            _currentItem = draggable;
+            _currentItem.BeginDrag(eventData.position);
 
-        // Immediately roll next item for the slot UI
-        RollNewItem();
+            // Immediately roll next item for the slot UI
+            RollNewItem();
+        }
     }
 
     public void OnDrag(PointerEventData eventData)

@@ -1,117 +1,177 @@
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
+
+    [Header("Music")]
     [SerializeField] private AudioSource _titleMusic;
-    [SerializeField] private AudioSource[] _sfx;
     [SerializeField] private AudioSource _bg;
+
+    [Header("SFX")]
+    [SerializeField] private AudioSource[] _sfx;
+
+    [Header("Settings")]
     [SerializeField] private bool isMusicMuted = false;
     [SerializeField] private bool isSFXMuted = false;
 
-    public void Awake()
+    private AudioSource _currentMusic;
+
+    private void Awake()
     {
-        // Singleton data structure
-        if (instance == null)
+        // Singleton
+        if (instance != null && instance != this)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
             Destroy(gameObject);
-
-        foreach (AudioSource sfx in _sfx)
-        {
-            sfx.mute = isSFXMuted;
+            return;
         }
 
-        _bg.mute = isSFXMuted;
-        _titleMusic.mute = isMusicMuted;
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        ApplySfxMute();
+        ApplyMusicMute();
     }
 
-    public void PlayTitle() // Play main menu music
+    private void OnEnable()
     {
-        _titleMusic.Play();
-    }
-    public void StartGameMusic()
-    {
-        StopTitle();
-        PlayBG();
-    }
-    public void StopTitle() // Stop the title music (after hitting play)
-    {
-        _titleMusic.mute = true; // If stop doesnt work for some reason
+        SceneManager.activeSceneChanged += HandleActiveSceneChanged;
     }
 
-    public void LowerTitle() // Lower the title music (in the settings for example)
+    private void OnDisable()
     {
-        _titleMusic.volume = 0.2f;
+        SceneManager.activeSceneChanged -= HandleActiveSceneChanged;
     }
 
-    public void IncreaseTitle() // Increase the title music (after closing the settings for example)
+    private void Start()
     {
-        _titleMusic.volume = 0.6f;
+        // Make sure initial scene gets the correct music
+        SetMusicForScene(SceneManager.GetActiveScene().name);
     }
 
-    public void PlaySFX(int sfxToPlay) // Dragging an item, item dropping, cracks on the floor etc...
+    private void HandleActiveSceneChanged(Scene oldScene, Scene newScene)
     {
-        _sfx[sfxToPlay].Stop(); // If a sound effect is already playing, stop it
-        _sfx[sfxToPlay].Play();
+        SetMusicForScene(newScene.name);
+    } 
+
+    private void SetMusicForScene(string sceneName)
+    {
+        AudioSource next = null;
+
+        if (sceneName == "MainMenuScene")
+            next = _titleMusic;
+        else if (sceneName == "LevelScene")
+            next = _bg;
+
+        SwitchMusic(next);
     }
 
-    public void PlaySFXPitchAdjusted(int sfxToPlay) // Changing the pitch on a sound that you hear over and over
+    private void SwitchMusic(AudioSource next)
     {
-        _sfx[sfxToPlay].pitch = Random.Range(0.8f, 1.2f);
+        // Prevent overlap
+        StopAllMusic();
 
-        PlaySFX(sfxToPlay);
+        _currentMusic = next;
+
+        // Keep mute state consistent across all music sources
+        ApplyMusicMute();
+
+        // If muted, do not start playback
+        if (isMusicMuted || _currentMusic == null)
+            return;
+
+        _currentMusic.Play();
     }
-    public void PlayLowerSFXVolume(int sfxToPlay, float newVol) // Changing the pitch on a sound that you hear over and over
-    {
-        _sfx[sfxToPlay].volume = newVol;
 
-        PlaySFX(sfxToPlay);
+    private void StopAllMusic()
+    {
+        if (_titleMusic != null) _titleMusic.Stop();
+        if (_bg != null) _bg.Stop();
     }
 
-    public void PlayBG() // Play background music after hitting start
+    private void ApplyMusicMute()
     {
-        _bg.Stop();
-        _bg.Play();
+        if (_titleMusic != null) _titleMusic.mute = isMusicMuted;
+        if (_bg != null) _bg.mute = isMusicMuted;
+    }
+
+    private void ApplySfxMute()
+    {
+        if (_sfx == null) return;
+
+        foreach (var sfx in _sfx)
+            if (sfx != null) sfx.mute = isSFXMuted;
     }
 
     public void ToggleMuteMusic()
     {
-        isMusicMuted = !isMusicMuted; // Flip the boolean state
+        isMusicMuted = !isMusicMuted;
 
-        if (SceneManager.GetActiveScene().name == "MainMenuScene")
+        ApplyMusicMute();
+
+        if (isMusicMuted)
         {
-            _titleMusic.mute = isMusicMuted; // Mute/Unmute the AudioSource (_titleMusic)
-            _bg.mute = isMusicMuted;
+            // Stop to not hear multiple tracks
+            StopAllMusic();
+        }
+        else
+        {
+            if (!_currentMusic.isPlaying)
+                _currentMusic.Play();
         }
 
-        if (SceneManager.GetActiveScene().name == "LevelScene")
-            _bg.mute = isMusicMuted; // Mute / Unmute the backgroundMusic
         Debug.Log("Music Muted: " + isMusicMuted);
     }
 
     public void ToggleMuteSFX()
     {
-        isSFXMuted = !isSFXMuted; // Flip the boolean state
-
-        foreach (var sfx in _sfx)
-        {
-            sfx.mute = isSFXMuted;
-        }
-
+        isSFXMuted = !isSFXMuted;
+        ApplySfxMute();
         Debug.Log("SFX Muted: " + isSFXMuted);
     }
 
+    public void PlaySFX(int sfxToPlay)
+    {
+        if (_sfx == null || sfxToPlay < 0 || sfxToPlay >= _sfx.Length) return;
+        var src = _sfx[sfxToPlay];
+        if (src == null) return;
+
+        src.Stop();
+        src.Play();
+    }
+
+    public void PlaySFXPitchAdjusted(int sfxToPlay)
+    {
+        if (_sfx == null || sfxToPlay < 0 || sfxToPlay >= _sfx.Length) return;
+        var src = _sfx[sfxToPlay];
+        if (src == null) return;
+
+        src.pitch = Random.Range(0.8f, 1.2f);
+        PlaySFX(sfxToPlay);
+    }
+
+    public void PlayLowerSFXVolume(int sfxToPlay, float newVol)
+    {
+        if (_sfx == null || sfxToPlay < 0 || sfxToPlay >= _sfx.Length) 
+            return;
+
+        var src = _sfx[sfxToPlay];
+        if (src == null) 
+            return;
+
+        src.volume = newVol;
+        PlaySFX(sfxToPlay);
+    }
 
     public void PlayButtonSound()
     {
+        if (_sfx == null || _sfx.Length == 0 || _sfx[0] == null) return;
+
         _sfx[0].volume = 0.3f;
         PlaySFXPitchAdjusted(0);
     }
+
+    public void PlayTitleMusic() => SwitchMusic(_titleMusic);
+    public void PlayBackgroundMusic() => SwitchMusic(_bg);
 }
