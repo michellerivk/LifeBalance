@@ -35,6 +35,9 @@ public class FallZone : MonoBehaviour
 
         fallsCount++;
 
+        AudioManager.instance.PlayLowerSFXVolume(1, 0.3f);
+        AudioManager.instance.PlaySFXPitchAdjusted(1); // Play item fell sound
+
         if (fallsCount >= fallsToLose) 
         {
             gameOver = true;
@@ -44,6 +47,9 @@ public class FallZone : MonoBehaviour
             int points = CalculateStackScore();
 
             PlayerLost(points);
+
+            AudioManager.instance.PlayLowerSFXVolume(2, 0.3f);
+            AudioManager.instance.PlaySFX(2); // Play losing sound
         }
 
     }
