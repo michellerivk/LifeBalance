@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bda4bbe802b8ad34c8a31c729a3a0c29, type: 3}
-  m_Name: GymData
+  m_Name: PlayGamesData
   m_EditorClassIdentifier: Assembly-CSharp::BalanceItemData
-  itemId: Gym
-  worldPrefab: {fileID: 7508338894946950630, guid: d14565deb2f79214d95816010d505198, type: 3}
-  iconSprite: {fileID: 2619591857597635248, guid: 1bf4ff51ee87bae489aa1356b63c9c75, type: 3}
+  itemId: PlayGames
+  worldPrefab: {fileID: 2601383019507734147, guid: 36b7ae9de492026428d41c7ff0a198be, type: 3}
+  iconSprite: {fileID: -2710301787135262000, guid: dab65bc7c0c2f9249b54503702434a93, type: 3}
   score: 1

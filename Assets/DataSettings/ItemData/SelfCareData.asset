@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bda4bbe802b8ad34c8a31c729a3a0c29, type: 3}
-  m_Name: BookData
+  m_Name: SelfCareData
   m_EditorClassIdentifier: Assembly-CSharp::BalanceItemData
-  itemId: Book
-  worldPrefab: {fileID: 3364415665464349776, guid: dd62e0490fb4f4d4191d577ac379749c, type: 3}
-  iconSprite: {fileID: 7931629167351049000, guid: bb4a4f2fdecb7ec439ebf48e8c0b38c0, type: 3}
+  itemId: SelfCare
+  worldPrefab: {fileID: 8870044888244448126, guid: 61a7aad5718d97a4887ca6b4a3a6ab8c, type: 3}
+  iconSprite: {fileID: -6153083895364690289, guid: 9ede7b4b531c96c49824356452dd316a, type: 3}
   score: 1
