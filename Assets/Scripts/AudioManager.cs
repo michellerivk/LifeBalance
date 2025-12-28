@@ -114,9 +114,4 @@ public class AudioManager : MonoBehaviour
         _sfx[0].volume = 0.3f;
         PlaySFXPitchAdjusted(0);
     }
-    public void PlayStartSound()
-    {
-        _sfx[3].volume = 0.3f;
-        PlaySFXPitchAdjusted(3);
-    }
 }
