@@ -20,4 +20,8 @@ public class MuteAudio : MonoBehaviour
     {
         AudioManager.instance.PlayButtonSound();
     }
+    public void PlayStartSound()
+    {
+        AudioManager.instance.PlayLowerSFXVolume(3, 0.3f);
+    }
 }

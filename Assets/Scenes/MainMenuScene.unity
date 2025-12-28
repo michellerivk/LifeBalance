@@ -134,6 +134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 103461304}
   - component: {fileID: 103461305}
+  - component: {fileID: 103461306}
   m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
@@ -188,6 +189,18 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 10}
   m_Constraint: 1
   m_ConstraintCount: 4
+--- !u!114 &103461306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103461303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da9f02185c932d4eb5dd2bbf473bf68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MuteAudio
 --- !u!1 &172359063 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1226843562488926466, guid: 6fe6068de4ca75746b9938269235aee7, type: 3}
@@ -383,9 +396,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 528737234}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: ToggleMuteMusic
+      - m_Target: {fileID: 103461306}
+        m_TargetAssemblyTypeName: MuteAudio, Assembly-CSharp
+        m_MethodName: ToggleMusic
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -395,8 +408,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 528737234}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+      - m_Target: {fileID: 103461306}
+        m_TargetAssemblyTypeName: MuteAudio, Assembly-CSharp
         m_MethodName: PlayButtonSound
         m_Mode: 1
         m_Arguments:
@@ -579,17 +592,6 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 7863309441764639058, guid: 6fe6068de4ca75746b9938269235aee7, type: 3}
   m_PrefabInstance: {fileID: 5419766474369011960}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &528737234 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6581795707062837054, guid: 6fe6068de4ca75746b9938269235aee7, type: 3}
-  m_PrefabInstance: {fileID: 5419766474369011960}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1a01af54890e547b69efd75a67d82f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
 --- !u!1 &530578729
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,21 +802,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 528737234}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: StartGameMusic
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 528737234}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: PlayButtonSound
+      - m_Target: {fileID: 103461306}
+        m_TargetAssemblyTypeName: MuteAudio, Assembly-CSharp
+        m_MethodName: PlayStartSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1082,9 +1072,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 528737234}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: ToggleMuteSFX
+      - m_Target: {fileID: 103461306}
+        m_TargetAssemblyTypeName: MuteAudio, Assembly-CSharp
+        m_MethodName: ToggleSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1094,8 +1084,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 528737234}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+      - m_Target: {fileID: 103461306}
+        m_TargetAssemblyTypeName: MuteAudio, Assembly-CSharp
         m_MethodName: PlayButtonSound
         m_Mode: 1
         m_Arguments:
@@ -2125,8 +2115,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 528737234}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+      - m_Target: {fileID: 103461306}
+        m_TargetAssemblyTypeName: MuteAudio, Assembly-CSharp
         m_MethodName: PlayButtonSound
         m_Mode: 1
         m_Arguments:

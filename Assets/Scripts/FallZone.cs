@@ -8,6 +8,7 @@ public class FallZone : MonoBehaviour
     //[SerializeField] private GameManager gameManager;
     [SerializeField] private int fallsToLose = 3;
     [SerializeField] private TextMeshProUGUI _playerLost;
+    [SerializeField] private Canvas _endGame;
 
     private int fallsCount;
     private bool gameOver;
@@ -62,7 +63,7 @@ public class FallZone : MonoBehaviour
 
         _playerLost.text = $"Highscore: {newHighScore}";
 
-        _playerLost.gameObject.SetActive(true);
+        _endGame.gameObject.SetActive(true);
     }
 
     private int CalculateStackScore()
