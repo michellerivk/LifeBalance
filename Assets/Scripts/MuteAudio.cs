@@ -15,4 +15,9 @@ public class MuteAudio : MonoBehaviour
         if (AudioManager.instance != null)
             AudioManager.instance.ToggleMuteSFX();
     }
+
+    public void PlayButtonSound()
+    {
+        AudioManager.instance.PlayButtonSound();
+    }
 }

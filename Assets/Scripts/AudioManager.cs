@@ -98,4 +98,11 @@ public class AudioManager : MonoBehaviour
 
         Debug.Log("SFX Muted: " + isSFXMuted);
     }
+
+
+    public void PlayButtonSound()
+    {
+        _sfx[0].volume = 0.3f;
+        PlaySFXPitchAdjusted(0);
+    }
 }
