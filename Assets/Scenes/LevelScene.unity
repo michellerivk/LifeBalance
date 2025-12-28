@@ -2078,6 +2078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1160400155}
   - component: {fileID: 1160400156}
+  - component: {fileID: 1160400158}
   - component: {fileID: 1160400157}
   m_Layer: 0
   m_Name: Scale
@@ -2206,6 +2207,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1160400158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160400154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb8bc7e808acb2d478f7f91c5fb0d5b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlacementMilestones
+  milestoneStep: 10
+  milestoneSfxIndex: 6
 --- !u!1 &1321605516
 GameObject:
   m_ObjectHideFlags: 0

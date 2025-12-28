@@ -75,6 +75,11 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         if (_currentItem != null)
         {
             _currentItem.EndDrag();
+
+            // Check how many items where placed and play a sound if 10 were placed successfully
+            if (PlacementMilestones.instance != null)
+                PlacementMilestones.instance.RegisterPlacedItem();
+
             _currentItem = null;
         }
     }
