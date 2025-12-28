@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda4bbe802b8ad34c8a31c729a3a0c29, type: 3}
+  m_Name: DishesData
+  m_EditorClassIdentifier: Assembly-CSharp::BalanceItemData
+  itemId: Dishes
+  worldPrefab: {fileID: 9168262957728403210, guid: f61d8b5091fe5f04991165dc2d51ee09, type: 3}
+  iconSprite: {fileID: -6260821470875995909, guid: bc13e67c79f9f9348a75146eca181f64, type: 3}
+  score: 1

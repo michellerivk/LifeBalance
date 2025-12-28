@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BalanceItemData
   itemId: Bath
   worldPrefab: {fileID: 1032083734950484660, guid: 8e4fdfd93122e3046bd61bfb6475f505, type: 3}
-  iconSprite: {fileID: 0}
+  iconSprite: {fileID: 5250793014387371688, guid: eab48a376fed3604798649ba9b476320, type: 3}
   score: 1

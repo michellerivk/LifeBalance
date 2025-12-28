@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda4bbe802b8ad34c8a31c729a3a0c29, type: 3}
+  m_Name: WaterPlantsData
+  m_EditorClassIdentifier: Assembly-CSharp::BalanceItemData
+  itemId: WaterPlants
+  worldPrefab: {fileID: 9075585393719540350, guid: 645d65f289764e041be3ecc166dd5634, type: 3}
+  iconSprite: {fileID: -8747112272023450421, guid: e941e4e5a1ae68a4f96a1c1a6600f9ee, type: 3}
+  score: 1

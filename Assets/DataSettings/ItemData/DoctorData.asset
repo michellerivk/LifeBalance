@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda4bbe802b8ad34c8a31c729a3a0c29, type: 3}
+  m_Name: DoctorData
+  m_EditorClassIdentifier: Assembly-CSharp::BalanceItemData
+  itemId: Doctor
+  worldPrefab: {fileID: 284277476415667798, guid: 9baa7fbf7e8542043a6e3864d9f4db38, type: 3}
+  iconSprite: {fileID: 4923159571906479061, guid: 91a4ddca6f510f742b6cf08143f93922, type: 3}
+  score: 1

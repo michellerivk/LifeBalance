@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda4bbe802b8ad34c8a31c729a3a0c29, type: 3}
+  m_Name: RunData
+  m_EditorClassIdentifier: Assembly-CSharp::BalanceItemData
+  itemId: Run
+  worldPrefab: {fileID: 2375707859453676676, guid: 77faa87a2c7d76d458f4c25f0542afe6, type: 3}
+  iconSprite: {fileID: 4944230376442633554, guid: 2378f2d6c4426334ebbe2235f7ae6084, type: 3}
+  score: 1

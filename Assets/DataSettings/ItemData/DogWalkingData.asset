@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda4bbe802b8ad34c8a31c729a3a0c29, type: 3}
+  m_Name: DogWalkingData
+  m_EditorClassIdentifier: Assembly-CSharp::BalanceItemData
+  itemId: DogWalking
+  worldPrefab: {fileID: 5027181902676917884, guid: 9fa7e91c3a5c6144fab7e965cd84b2d5, type: 3}
+  iconSprite: {fileID: 4503728688668850913, guid: d37a26eca944bef498d580571c461f4c, type: 3}
+  score: 1

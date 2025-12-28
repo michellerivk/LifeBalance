@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda4bbe802b8ad34c8a31c729a3a0c29, type: 3}
+  m_Name: TVData
+  m_EditorClassIdentifier: Assembly-CSharp::BalanceItemData
+  itemId: TV
+  worldPrefab: {fileID: 6385481902355770554, guid: c9df61cfe3cddf540af9e09e6c82ae6f, type: 3}
+  iconSprite: {fileID: -5509753353421974763, guid: a3faa2940dbd45147aba944473cc06d5, type: 3}
+  score: 1
