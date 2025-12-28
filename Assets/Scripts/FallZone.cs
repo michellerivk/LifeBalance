@@ -27,6 +27,13 @@ public class FallZone : MonoBehaviour
 
         Debug.Log("Got Item");
 
+        var fx = item.GetComponentInChildren<ShaderEffectFader>();      // shader effect on hit
+        if (fx != null)
+        {
+            fx.FadeTo(grayscaleTarget: 1f, noiseTarget: 1f);
+            Debug.Log($"Fade Item {fx.name}");
+        }
+
         Rigidbody2D rb = item.GetComponent<Rigidbody2D>();
         if (rb == null || rb.bodyType != RigidbodyType2D.Dynamic) return;
 

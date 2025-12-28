@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2125315329494995124}
   - component: {fileID: -846635240331436619}
   - component: {fileID: 3601152252051086644}
+  - component: {fileID: 930028977650122347}
   m_Layer: 0
   m_Name: BaseItem
   m_TagString: Untagged
@@ -62,7 +63,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 20a5f1bd6c7a2b84c8a75fefcca72cc6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -199,3 +200,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5894678cfb6ebcd49ab6a47677f12a16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableItem
+--- !u!114 &930028977650122347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7054626533587059362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19bd39ed366ace42af922d56f067711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShaderEffectFader
+  rend: {fileID: -2776517277776590651}
+  duration: 0.6
+  grayscaleProp: _GrayscaleAmount
+  noiseProp: _NoiseActive
