@@ -170,20 +170,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "303bb1c2785a4ee882238118aeced884"
-                },
-                "m_SlotId": 1
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "ef9a16705dcb4f02961d75e0fd94b71a"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "37a7622f42cb49c7b5533cf831adb0cc"
                 },
                 "m_SlotId": 0
@@ -204,7 +190,7 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "303bb1c2785a4ee882238118aeced884"
+                    "m_Id": "ef9a16705dcb4f02961d75e0fd94b71a"
                 },
                 "m_SlotId": 0
             }
@@ -256,7 +242,7 @@
                 "m_Node": {
                     "m_Id": "731a4d8c62714073afee6aa39ab4b926"
                 },
-                "m_SlotId": 1
+                "m_SlotId": 0
             },
             "m_InputSlot": {
                 "m_Node": {
@@ -795,7 +781,7 @@
     "m_ShaderOutputName": "B",
     "m_StageCapability": 3,
     "m_Value": {
-        "e00": 2.3499999046325685,
+        "e00": 1.75,
         "e01": 2.0,
         "e02": 2.0,
         "e03": 2.0,
@@ -843,7 +829,7 @@
     "m_ShaderOutputName": "B",
     "m_StageCapability": 3,
     "m_Value": {
-        "e00": -0.10999999940395355,
+        "e00": 1.5299999713897706,
         "e01": 2.0,
         "e02": 2.0,
         "e03": 2.0,
@@ -1975,7 +1961,7 @@
     "m_StageCapability": 3,
     "m_Value": {
         "x": 0.10000000149011612,
-        "y": 3.0
+        "y": 5.96999979019165
     },
     "m_DefaultValue": {
         "x": 0.0,
@@ -3232,7 +3218,7 @@
     "m_Hidden": false,
     "m_PerRendererData": false,
     "m_customAttributes": [],
-    "m_Value": 0.0,
+    "m_Value": 1.0,
     "m_FloatType": 1,
     "m_LiteralFloatMode": false,
     "m_RangeValues": {
@@ -3940,8 +3926,8 @@
     "m_ShaderOutputName": "InMinMax",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 0.10000000149011612,
-        "y": 1.0
+        "x": 0.25,
+        "y": 1.4700000286102296
     },
     "m_DefaultValue": {
         "x": -1.0,
@@ -3973,7 +3959,7 @@
         "w": 0.0
     },
     "m_Labels": [],
-    "m_ScreenSpaceType": 0
+    "m_ScreenSpaceType": 2
 }
 
 {

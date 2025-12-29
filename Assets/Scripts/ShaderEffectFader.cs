@@ -21,15 +21,15 @@ public class ShaderEffectFader : MonoBehaviour
 
     public void FadeTo(float grayscaleTarget, float noiseTarget)
     {
-        Debug.Log($"Enter FadeTo");
+        //Debug.Log($"Enter FadeTo");
         if (routine != null) StopCoroutine(routine);
         routine = StartCoroutine(FadeRoutine(grayscaleTarget, noiseTarget));
-        Debug.Log($"Exit FadeTo");
+        //Debug.Log($"Exit FadeTo");
     }
 
     private IEnumerator FadeRoutine(float grayTarget, float noiseTarget)
     {
-        Debug.Log($"Entered coroutine FadeRoutine");
+        //Debug.Log($"Entered coroutine FadeRoutine");
 
         rend.GetPropertyBlock(mpb);
 
@@ -52,6 +52,17 @@ public class ShaderEffectFader : MonoBehaviour
         mpb.SetFloat(grayscaleProp, grayTarget);
         mpb.SetFloat(noiseProp, noiseTarget);
         rend.SetPropertyBlock(mpb);
-        Debug.Log($"Exit coroutine FadeRoutine. gray:{grayscaleProp}:{grayTarget}, noise:{noiseProp}:{noiseTarget}");
+        //Debug.Log($"Exit coroutine FadeRoutine. gray:{grayscaleProp}:{grayTarget}, noise:{noiseProp}:{noiseTarget}");
+    }
+
+    public void ApplyImmediate(float grayscaleValue, float noiseValue)
+    {
+        if (!rend) rend = GetComponentInChildren<SpriteRenderer>();
+        if (mpb == null) mpb = new MaterialPropertyBlock();
+
+        rend.GetPropertyBlock(mpb);
+        mpb.SetFloat(grayscaleProp, grayscaleValue);
+        mpb.SetFloat(noiseProp, noiseValue);
+        rend.SetPropertyBlock(mpb);
     }
 }

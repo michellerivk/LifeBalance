@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(Collider2D))]
 public class FallZone : MonoBehaviour
@@ -9,6 +10,8 @@ public class FallZone : MonoBehaviour
     [SerializeField] private int fallsToLose = 3;
     [SerializeField] private TextMeshProUGUI _playerLost;
     [SerializeField] private Canvas _endGame;
+    
+    public static event Action<BalanceItem> OnItemFell;
 
     private int fallsCount;
     private bool gameOver;
@@ -26,13 +29,14 @@ public class FallZone : MonoBehaviour
         BalanceItem item = other.GetComponentInParent<BalanceItem>();
         if (item == null) return;
 
-        Debug.Log("Got Item");
+        Debug.Log($"[FallZone] TriggerEnter by {other.name}");
+        //Debug.Log("Got Item");
 
         var fx = item.GetComponentInChildren<ShaderEffectFader>();      // shader effect on hit
         if (fx != null)
         {
             fx.FadeTo(grayscaleTarget: 1f, noiseTarget: 1f);
-            Debug.Log($"Fade Item {fx.name}");
+            //Debug.Log($"Fade Item {fx.name}");
         }
 
         Rigidbody2D rb = item.GetComponent<Rigidbody2D>();
@@ -40,6 +44,9 @@ public class FallZone : MonoBehaviour
 
         int id = item.GetInstanceID();
         if (!counted.Add(id)) return; // already counted
+
+        OnItemFell?.Invoke(item);       // subscries to discovered items in ItemDiscovery
+        Debug.Log($"[FallZone] OnItemFell fired for {item.data.itemId} id={item.GetInstanceID()} body={rb.bodyType}");
 
         fallsCount++;
 
@@ -79,7 +86,7 @@ public class FallZone : MonoBehaviour
 
         // Find all BalanceItems currently in the scene.
 
-        BalanceItem[] allItems = Object.FindObjectsByType<BalanceItem>(FindObjectsSortMode.None);
+        BalanceItem[] allItems = GameObject.FindObjectsByType<BalanceItem>(FindObjectsSortMode.None); // Object -> Gameobject (error?)
         
         foreach (var item in allItems)
         {
