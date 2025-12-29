@@ -11,12 +11,14 @@ public class ScreenGroupFlickerColor : MonoBehaviour
     [Range(0f, 1f)] public float slowPulseAmount = 0.05f;
     public float slowPulseSpeed = 1.2f;
 
-    private SpriteRenderer[] _renderers;
+    [Header("Sprite Renderer")]
+    [SerializeField] private SpriteRenderer[] _renderers;
     private Color[] _baseColors;
 
     private void Awake()
     {
-        _renderers = GetComponentsInChildren<SpriteRenderer>(includeInactive: true);
+        //_renderers = GetComponentsInChildren<SpriteRenderer>(includeInactive: true);
+        if (_renderers == null) { GetComponentsInChildren<SpriteRenderer>(includeInactive: true); }
         _baseColors = new Color[_renderers.Length];
 
         for (int i = 0; i < _renderers.Length; i++)
