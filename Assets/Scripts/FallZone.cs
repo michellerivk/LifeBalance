@@ -10,6 +10,7 @@ public class FallZone : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _playerLost;
     [SerializeField] private Canvas _endGame;
 
+    // Making the vars static to share them between the 3 fall zones
     private int fallsCount;
     private bool gameOver;
 
@@ -17,7 +18,8 @@ public class FallZone : MonoBehaviour
     private readonly HashSet<int> counted = new HashSet<int>();
 
     private void OnTriggerEnter2D(Collider2D other) => TryCount(other);
-    //private void OnTriggerStay2D(Collider2D other) => TryCount(other);
+    // Take a life even if directly on the board
+    private void OnTriggerStay2D(Collider2D other) => TryCount(other);
 
     private void TryCount(Collider2D other)
     {
@@ -26,7 +28,12 @@ public class FallZone : MonoBehaviour
         BalanceItem item = other.GetComponentInParent<BalanceItem>();
         if (item == null) return;
 
-        Debug.Log("Got Item");
+        Rigidbody2D rb = item.GetComponent<Rigidbody2D>();
+        if (rb == null || rb.bodyType != RigidbodyType2D.Dynamic) return;
+
+        int id = item.GetInstanceID();
+        if (!counted.Add(id)) return; // already counted
+
 
         var fx = item.GetComponentInChildren<ShaderEffectFader>();      // shader effect on hit
         if (fx != null)
@@ -34,12 +41,6 @@ public class FallZone : MonoBehaviour
             fx.FadeTo(grayscaleTarget: 1f, noiseTarget: 1f);
             Debug.Log($"Fade Item {fx.name}");
         }
-
-        Rigidbody2D rb = item.GetComponent<Rigidbody2D>();
-        if (rb == null || rb.bodyType != RigidbodyType2D.Dynamic) return;
-
-        int id = item.GetInstanceID();
-        if (!counted.Add(id)) return; // already counted
 
         fallsCount++;
 
