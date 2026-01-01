@@ -14,6 +14,14 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene("LevelScene");
     }
+    public void SwitchToHardMode()
+    {
+        SceneManager.LoadScene("HardMode");
+    }
+    public void SwitchToEasyMode()
+    {
+        SceneManager.LoadScene("EasyMode");
+    }
     public void SwitchToMainMenu()
     {
         SceneManager.LoadScene("MainMenuScene");
