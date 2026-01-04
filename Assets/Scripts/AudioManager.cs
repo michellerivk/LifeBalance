@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
@@ -15,6 +16,17 @@ public class AudioManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private bool isMusicMuted = false;
     [SerializeField] private bool isSFXMuted = false;
+
+    [Header("Sprites")]
+    [SerializeField] private Sprite _musicMuted;
+    [SerializeField] private Sprite _musicNotMuted;
+    [SerializeField] private Sprite _sfxMuted;
+    [SerializeField] private Sprite _sfxNotMuted;
+
+    [SerializeField] private Sprite _currentMusicSprite;
+    [SerializeField] private Sprite _currentSfxSprite;
+
+
 
     private AudioSource _currentMusic;
 
@@ -104,7 +116,7 @@ public class AudioManager : MonoBehaviour
             if (sfx != null) sfx.mute = isSFXMuted;
     }
 
-    public void ToggleMuteMusic()
+    public void ToggleMuteMusic(Image music)
     {
         isMusicMuted = !isMusicMuted;
 
@@ -114,20 +126,39 @@ public class AudioManager : MonoBehaviour
         {
             // Stop to not hear multiple tracks
             StopAllMusic();
+            _currentMusicSprite = _musicMuted;
         }
         else
         {
             if (!_currentMusic.isPlaying)
+            {
                 _currentMusic.Play();
+                _currentMusicSprite = _musicNotMuted;
+            }
         }
 
+        music.sprite = _currentMusicSprite;
+        music.SetNativeSize();
         Debug.Log("Music Muted: " + isMusicMuted);
     }
 
-    public void ToggleMuteSFX()
+    public void ToggleMuteSFX(Image sfx)
     {
         isSFXMuted = !isSFXMuted;
+
+        if (isSFXMuted)
+        {
+            _currentSfxSprite = _sfxMuted;
+        }
+        else
+        {
+            _currentSfxSprite = _sfxNotMuted;
+        }
+
         ApplySfxMute();
+
+        sfx.sprite = _currentSfxSprite;
+        sfx.SetNativeSize();
         Debug.Log("SFX Muted: " + isSFXMuted);
     }
 

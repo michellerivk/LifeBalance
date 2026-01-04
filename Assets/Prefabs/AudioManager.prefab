@@ -1154,6 +1154,10 @@ MonoBehaviour:
   _sfx: []
   isMusicMuted: 0
   isSFXMuted: 0
+  _musicMuted: {fileID: 21300000, guid: 1c8b94b37ccc53c4d8ce5590cecff3a9, type: 3}
+  _musicNotMuted: {fileID: 21300000, guid: 4338642ab7f775f4baa41d90a7129f03, type: 3}
+  _sfxMuted: {fileID: 21300000, guid: 24887c8daa1f6c845b7c035f313404cf, type: 3}
+  _sfxNotMuted: {fileID: 21300000, guid: 1a98f522605989f478b77ff58d64d306, type: 3}
 --- !u!1 &8277383743863566612
 GameObject:
   m_ObjectHideFlags: 0
