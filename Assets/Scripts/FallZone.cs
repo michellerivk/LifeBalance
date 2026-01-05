@@ -80,7 +80,7 @@ public class FallZone : MonoBehaviour
 
         int newHighScore = HighscoreManager.GetNormalHighScore(); // Get the new highscore
 
-        _playerLost.text = $"Current Score: {points},Highscore: {newHighScore}";
+        _playerLost.text = $"Current Score: {points}\nHighscore: {newHighScore}";
 
         _endGame.gameObject.SetActive(true);
     }
