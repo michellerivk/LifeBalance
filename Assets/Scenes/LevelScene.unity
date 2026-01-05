@@ -728,6 +728,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2027434781}
+        m_TargetAssemblyTypeName: MuteAudio, Assembly-CSharp
+        m_MethodName: PlayButtonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &237935338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2130,7 +2142,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.6129032, y: 1.6129032, z: 1}
+  m_LocalScale: {x: 1.1290323, y: 1.1290323, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 117310519}
@@ -2890,6 +2902,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2027434781}
+        m_TargetAssemblyTypeName: MuteAudio, Assembly-CSharp
+        m_MethodName: PlayButtonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1158802347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3239,6 +3263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1237717508}
   - component: {fileID: 1237717509}
+  - component: {fileID: 1237717510}
   m_Layer: 5
   m_Name: SoundButtons
   m_TagString: Untagged
@@ -3279,6 +3304,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da9f02185c932d4eb5dd2bbf473bf68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MuteAudio
+--- !u!114 &1237717510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237717507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e19bff31d4e6d4fbf0b4eddb78f613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SettingsManager
+  musicIcon: {fileID: 1180689289}
+  sfxIcon: {fileID: 365603033}
 --- !u!1 &1268150958
 GameObject:
   m_ObjectHideFlags: 0
@@ -4041,6 +4080,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2027434779}
   - component: {fileID: 2027434780}
+  - component: {fileID: 2027434781}
   m_Layer: 0
   m_Name: Buttons
   m_TagString: Untagged
@@ -4093,6 +4133,18 @@ MonoBehaviour:
   m_Spacing: {x: 100, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 2
+--- !u!114 &2027434781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027434778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da9f02185c932d4eb5dd2bbf473bf68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MuteAudio
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

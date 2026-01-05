@@ -46,7 +46,7 @@ public class FallZone : MonoBehaviour
 
         fallsCount++;
 
-        if (fallsCount == 2)
+        if (fallsCount == fallsToLose - 1)
         {
             if (playerAnimator != null)
                 playerAnimator.SetTrigger("is2strike");
@@ -76,24 +76,24 @@ public class FallZone : MonoBehaviour
 
     private void PlayerLost(int points)
     {
-        Difficulty difficulty = (Difficulty)PlayerPrefs.GetInt("difficulty", 0);
+        Difficulty difficulty = (Difficulty)PlayerPrefs.GetInt("difficulty", (int)Difficulty.Normal);
         int newHighScore = 0;
 
         switch (difficulty)
         {
             case Difficulty.Easy:
-                newHighScore = HighscoreManager.GetEasyHighScore(); // Get the new highscore
                 HighscoreManager.TryUpdateEasyHighscore(points); // Update the highscore
+                newHighScore = HighscoreManager.GetEasyHighScore(); // Get the new highscore
                 break;
 
             case Difficulty.Normal:
-                newHighScore = HighscoreManager.GetNormalHighScore(); // Get the new highscore
                 HighscoreManager.TryUpdateNormalHighscore(points); // Update the highscore
+                newHighScore = HighscoreManager.GetNormalHighScore(); // Get the new highscore
                 break;
 
             case Difficulty.Hard:
-                newHighScore = HighscoreManager.GetHardHighScore(); // Get the new highscore
                 HighscoreManager.TryUpdateHardHighscore(points); // Update the highscore
+                newHighScore = HighscoreManager.GetHardHighScore(); // Get the new highscore
                 break;
         }        
 

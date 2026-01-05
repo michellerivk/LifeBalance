@@ -202,6 +202,15 @@ public class AudioManager : MonoBehaviour
 
     public void PlayTitleMusic() => SwitchMusic(_titleMusic);
     public void PlayBackgroundMusic() => SwitchMusic(_bg);
+    
+    public void SetFirstIcon(Image musicImage, Image sfxImage)
+    {
+        if (isMusicMuted) SetIcon(musicImage, _musicMuted, 80f, 80f);
+        else SetIcon(musicImage, _musicNotMuted, 80f, 60f);
+
+        if (isSFXMuted) SetIcon(sfxImage, _sfxMuted, 80f, 80f);
+        else SetIcon(sfxImage, _sfxNotMuted, 60f, 80f);
+    }
     private void SetIcon(Image img, Sprite sprite, float width, float height)
     {
         if (img == null) return;
@@ -211,7 +220,6 @@ public class AudioManager : MonoBehaviour
         RectTransform rt = img.rectTransform;
         rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
         rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);
-
     }
 
 

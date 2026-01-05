@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneLoader : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class SceneLoader : MonoBehaviour
     }
     public void SwitchToCurrentDifficulty()
     {
-        Difficulty difficulty = (Difficulty)PlayerPrefs.GetInt("difficulty", 0);
+        Difficulty difficulty = (Difficulty)PlayerPrefs.GetInt("difficulty", (int)Difficulty.Normal);
 
         switch (difficulty)
         {
@@ -32,15 +33,15 @@ public class SceneLoader : MonoBehaviour
                 break;
         }
     }
-    public void SwitchToNormalMode()
+    private void SwitchToNormalMode()
     {
         SceneManager.LoadScene("LevelScene");
     }
-    public void SwitchToHardMode()
+    private void SwitchToHardMode()
     {
         SceneManager.LoadScene("HardMode");
     }
-    public void SwitchToEasyMode()
+    private void SwitchToEasyMode()
     {
         SceneManager.LoadScene("EasyMode");
     }
