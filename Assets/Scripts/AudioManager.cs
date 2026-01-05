@@ -23,8 +23,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private Sprite _sfxMuted;
     [SerializeField] private Sprite _sfxNotMuted;
 
-    [SerializeField] private Sprite _currentMusicSprite;
-    [SerializeField] private Sprite _currentSfxSprite;
+    //[SerializeField] private Sprite _currentMusicSprite;
+    //[SerializeField] private Sprite _currentSfxSprite;
 
 
 
@@ -126,39 +126,35 @@ public class AudioManager : MonoBehaviour
         {
             // Stop to not hear multiple tracks
             StopAllMusic();
-            _currentMusicSprite = _musicMuted;
+            SetIcon(music, _musicMuted, 80f, 80f);
         }
         else
         {
             if (!_currentMusic.isPlaying)
             {
                 _currentMusic.Play();
-                _currentMusicSprite = _musicNotMuted;
             }
+
+            SetIcon(music, _musicNotMuted, 80f, 60f);
         }
 
-        music.sprite = _currentMusicSprite;
-        music.SetNativeSize();
         Debug.Log("Music Muted: " + isMusicMuted);
     }
 
     public void ToggleMuteSFX(Image sfx)
     {
         isSFXMuted = !isSFXMuted;
+        ApplySfxMute();
 
         if (isSFXMuted)
         {
-            _currentSfxSprite = _sfxMuted;
+            SetIcon(sfx, _sfxMuted, 80f, 80f);
         }
         else
         {
-            _currentSfxSprite = _sfxNotMuted;
+            SetIcon(sfx, _sfxNotMuted, 60f, 80f);
         }
 
-        ApplySfxMute();
-
-        sfx.sprite = _currentSfxSprite;
-        sfx.SetNativeSize();
         Debug.Log("SFX Muted: " + isSFXMuted);
     }
 
@@ -205,4 +201,17 @@ public class AudioManager : MonoBehaviour
 
     public void PlayTitleMusic() => SwitchMusic(_titleMusic);
     public void PlayBackgroundMusic() => SwitchMusic(_bg);
+    private void SetIcon(Image img, Sprite sprite, float width, float height)
+    {
+        if (img == null) return;
+
+        img.sprite = sprite;
+
+        RectTransform rt = img.rectTransform;
+        rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
+        rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);
+
+    }
+
+
 }
