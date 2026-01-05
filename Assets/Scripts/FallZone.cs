@@ -11,7 +11,11 @@ public class FallZone : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _playerLost;
     [SerializeField] private Canvas _endGame;
     
+    [Header("Shader noise range")]
+    [Range(0f, 2f)] [SerializeField] private float noiseTarget = 1;
+
     public static event Action<BalanceItem> OnItemFell;
+    public static event Action OnGameOver;
 
     private int fallsCount;
     private bool gameOver;
@@ -35,7 +39,7 @@ public class FallZone : MonoBehaviour
         var fx = item.GetComponentInChildren<ShaderEffectFader>();      // shader effect on hit
         if (fx != null)
         {
-            fx.FadeTo(grayscaleTarget: 1f, noiseTarget: 1f);
+            fx.FadeTo(grayscaleTarget: 1f, noiseTarget);
             //Debug.Log($"Fade Item {fx.name}");
         }
 
@@ -65,6 +69,8 @@ public class FallZone : MonoBehaviour
 
             AudioManager.instance.PlayLowerSFXVolume(2, 0.3f);
             AudioManager.instance.PlaySFX(2); // Play losing sound
+
+            OnGameOver?.Invoke();
         }
 
     }

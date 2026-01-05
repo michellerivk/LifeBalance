@@ -17,6 +17,9 @@ public class LaptopSlideshow : MonoBehaviour
     [SerializeField] private float slideDistance = 2.0f; // world units across the screen width
     [SerializeField] private float slideDuration = 0.4f;
     [SerializeField] private float pauseSeconds = 2.0f;
+    
+    [Header("Shader noise range")]
+    [Range(0f, 2f)][SerializeField] private float noiseTarget = 1;
 
     private int _index = 0;
     private bool _aIsCurrent = true;
@@ -135,7 +138,8 @@ public class LaptopSlideshow : MonoBehaviour
             if (isUnlocked)
                 fx.ApplyImmediate(grayscaleValue: 0f, noiseValue: 0f);
             else
-                fx.ApplyImmediate(grayscaleValue: 1f, noiseValue: 1f);
+                //fx.ApplyImmediate(grayscaleValue: 1f, noiseValue: 1f);
+                fx.ApplyImmediate(grayscaleValue: 1f, noiseTarget);
         }
 
         // store itemId on renderer name for easy match (simple trick)

@@ -213,6 +213,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShaderEffectFader
   rend: {fileID: -2776517277776590651}
-  duration: 0.6
+  duration: 1
   grayscaleProp: _GrayscaleAmount
   noiseProp: _NoiseActive

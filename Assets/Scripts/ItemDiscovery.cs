@@ -10,6 +10,18 @@ public class ItemDiscovery : MonoBehaviour
 
     public bool IsDiscovered(string itemId) => discovered.Contains(itemId);
 
+    private void OnEnable()
+    {
+        if (discovered != null)
+            FallZone.OnGameOver += HandleResetDiscovered;
+    }
+
+    private void OnDisable()
+    {
+        if (discovered != null)
+            FallZone.OnGameOver -= HandleResetDiscovered;
+    }
+
     public void MarkDiscovered(string itemId)
     {
         Debug.Log($"[Discovery] MarkDiscovered({itemId})");
@@ -24,5 +36,10 @@ public class ItemDiscovery : MonoBehaviour
         {
             Debug.Log($"[Discovery] Already discovered: {itemId}");
         }
+    }
+
+    private void HandleResetDiscovered()
+    {
+        discovered.Clear();
     }
 }
