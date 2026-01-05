@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
@@ -15,6 +16,17 @@ public class AudioManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private bool isMusicMuted = false;
     [SerializeField] private bool isSFXMuted = false;
+
+    [Header("Sprites")]
+    [SerializeField] private Sprite _musicMuted;
+    [SerializeField] private Sprite _musicNotMuted;
+    [SerializeField] private Sprite _sfxMuted;
+    [SerializeField] private Sprite _sfxNotMuted;
+
+    //[SerializeField] private Sprite _currentMusicSprite;
+    //[SerializeField] private Sprite _currentSfxSprite;
+
+
 
     private AudioSource _currentMusic;
 
@@ -61,8 +73,9 @@ public class AudioManager : MonoBehaviour
 
         if (sceneName == "MainMenuScene")
             next = _titleMusic;
-        else if (sceneName == "LevelScene")
+        else if ((sceneName == "LevelScene") || (sceneName == "HardMode") || (sceneName == "EasyMode"))
             next = _bg;
+
 
         SwitchMusic(next);
     }
@@ -104,7 +117,7 @@ public class AudioManager : MonoBehaviour
             if (sfx != null) sfx.mute = isSFXMuted;
     }
 
-    public void ToggleMuteMusic()
+    public void ToggleMuteMusic(Image music)
     {
         isMusicMuted = !isMusicMuted;
 
@@ -114,20 +127,35 @@ public class AudioManager : MonoBehaviour
         {
             // Stop to not hear multiple tracks
             StopAllMusic();
+            SetIcon(music, _musicMuted, 80f, 80f);
         }
         else
         {
             if (!_currentMusic.isPlaying)
+            {
                 _currentMusic.Play();
+            }
+
+            SetIcon(music, _musicNotMuted, 80f, 60f);
         }
 
         Debug.Log("Music Muted: " + isMusicMuted);
     }
 
-    public void ToggleMuteSFX()
+    public void ToggleMuteSFX(Image sfx)
     {
         isSFXMuted = !isSFXMuted;
         ApplySfxMute();
+
+        if (isSFXMuted)
+        {
+            SetIcon(sfx, _sfxMuted, 80f, 80f);
+        }
+        else
+        {
+            SetIcon(sfx, _sfxNotMuted, 60f, 80f);
+        }
+
         Debug.Log("SFX Muted: " + isSFXMuted);
     }
 
@@ -174,4 +202,25 @@ public class AudioManager : MonoBehaviour
 
     public void PlayTitleMusic() => SwitchMusic(_titleMusic);
     public void PlayBackgroundMusic() => SwitchMusic(_bg);
+    
+    public void SetFirstIcon(Image musicImage, Image sfxImage)
+    {
+        if (isMusicMuted) SetIcon(musicImage, _musicMuted, 80f, 80f);
+        else SetIcon(musicImage, _musicNotMuted, 80f, 60f);
+
+        if (isSFXMuted) SetIcon(sfxImage, _sfxMuted, 80f, 80f);
+        else SetIcon(sfxImage, _sfxNotMuted, 60f, 80f);
+    }
+    private void SetIcon(Image img, Sprite sprite, float width, float height)
+    {
+        if (img == null) return;
+
+        img.sprite = sprite;
+
+        RectTransform rt = img.rectTransform;
+        rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
+        rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);
+    }
+
+
 }

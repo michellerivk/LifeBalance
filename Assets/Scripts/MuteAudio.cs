@@ -1,19 +1,20 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MuteAudio : MonoBehaviour
 {
-    public void ToggleMusic()
+    public void ToggleMusic(Image music)
     {
         if (AudioManager.instance != null)
-            AudioManager.instance.ToggleMuteMusic();
+            AudioManager.instance.ToggleMuteMusic(music);
         else
             Debug.LogWarning("AudioManager.instance is null. Make sure AudioManager is created before this scene.");
     }
 
-    public void ToggleSFX()
+    public void ToggleSFX(Image sfx)
     {
         if (AudioManager.instance != null)
-            AudioManager.instance.ToggleMuteSFX();
+            AudioManager.instance.ToggleMuteSFX(sfx);
     }
 
     public void PlayButtonSound()

@@ -16,7 +16,9 @@ public class FallZone : MonoBehaviour
 
     public static event Action<BalanceItem> OnItemFell;
     public static event Action OnGameOver;
+    [SerializeField] private Animator playerAnimator;
 
+    // Making the vars static to share them between the 3 fall zones
     private int fallsCount;
     private bool gameOver;
 
@@ -24,7 +26,8 @@ public class FallZone : MonoBehaviour
     private readonly HashSet<int> counted = new HashSet<int>();
 
     private void OnTriggerEnter2D(Collider2D other) => TryCount(other);
-    //private void OnTriggerStay2D(Collider2D other) => TryCount(other);
+    // Take a life even if directly on the board
+    private void OnTriggerStay2D(Collider2D other) => TryCount(other);
 
     private void TryCount(Collider2D other)
     {
@@ -35,6 +38,7 @@ public class FallZone : MonoBehaviour
 
         Debug.Log($"[FallZone] TriggerEnter by {other.name}");
         //Debug.Log("Got Item");
+
 
         var fx = item.GetComponentInChildren<ShaderEffectFader>();      // shader effect on hit
         if (fx != null)
@@ -53,6 +57,15 @@ public class FallZone : MonoBehaviour
         Debug.Log($"[FallZone] OnItemFell fired for {item.data.itemId} id={item.GetInstanceID()} body={rb.bodyType}");
 
         fallsCount++;
+
+        if (fallsCount == fallsToLose - 1)
+        {
+            if (playerAnimator != null)
+                playerAnimator.SetTrigger("is2strike");
+            else
+                Debug.LogWarning("FallZone: playerAnimator not assigned in Inspector.");
+        }
+
 
         AudioManager.instance.PlayLowerSFXVolume(1, 0.3f);
         AudioManager.instance.PlaySFXPitchAdjusted(1); // Play item fell sound
@@ -77,11 +90,28 @@ public class FallZone : MonoBehaviour
 
     private void PlayerLost(int points)
     {
-        HighscoreManager.TryUpdateHighscore(points); // Update the highscore
+        Difficulty difficulty = (Difficulty)PlayerPrefs.GetInt("difficulty", (int)Difficulty.Normal);
+        int newHighScore = 0;
 
-        int newHighScore = HighscoreManager.GetHighScore(); // Get the new highscore
+        switch (difficulty)
+        {
+            case Difficulty.Easy:
+                HighscoreManager.TryUpdateEasyHighscore(points); // Update the highscore
+                newHighScore = HighscoreManager.GetEasyHighScore(); // Get the new highscore
+                break;
 
-        _playerLost.text = $"Current Score: {points},Highscore: {newHighScore}";
+            case Difficulty.Normal:
+                HighscoreManager.TryUpdateNormalHighscore(points); // Update the highscore
+                newHighScore = HighscoreManager.GetNormalHighScore(); // Get the new highscore
+                break;
+
+            case Difficulty.Hard:
+                HighscoreManager.TryUpdateHardHighscore(points); // Update the highscore
+                newHighScore = HighscoreManager.GetHardHighScore(); // Get the new highscore
+                break;
+        }        
+
+        _playerLost.text = $"Current Score: {points}\nHighscore: {newHighScore}";
 
         _endGame.gameObject.SetActive(true);
     }
