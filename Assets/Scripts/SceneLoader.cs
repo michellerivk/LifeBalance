@@ -9,8 +9,30 @@ public class SceneLoader : MonoBehaviour
         AudioManager.instance.PlayTitleMusic(); // Play the title music
     }
     */
+    public void SwitchToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenuScene");
+    }
+    public void SwitchToCurrentDifficulty()
+    {
+        Difficulty difficulty = (Difficulty)PlayerPrefs.GetInt("difficulty", 0);
 
-    public void SwitchToLevel()
+        switch (difficulty)
+        {
+            case Difficulty.Easy:
+                SwitchToEasyMode(); 
+                break;
+
+            case Difficulty.Normal:
+                SwitchToNormalMode(); 
+                break;
+
+            case Difficulty.Hard:
+                SwitchToHardMode(); 
+                break;
+        }
+    }
+    public void SwitchToNormalMode()
     {
         SceneManager.LoadScene("LevelScene");
     }
@@ -22,13 +44,10 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene("EasyMode");
     }
-    public void SwitchToMainMenu()
-    {
-        SceneManager.LoadScene("MainMenuScene");
-    }
-
+    /*
     public void QuitApplication()
     {
         Application.Quit();
     }
+    */
 }
