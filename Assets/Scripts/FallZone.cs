@@ -76,9 +76,26 @@ public class FallZone : MonoBehaviour
 
     private void PlayerLost(int points)
     {
-        HighscoreManager.TryUpdateNormalHighscore(points); // Update the highscore
+        Difficulty difficulty = (Difficulty)PlayerPrefs.GetInt("difficulty", 0);
+        int newHighScore = 0;
 
-        int newHighScore = HighscoreManager.GetNormalHighScore(); // Get the new highscore
+        switch (difficulty)
+        {
+            case Difficulty.Easy:
+                newHighScore = HighscoreManager.GetEasyHighScore(); // Get the new highscore
+                HighscoreManager.TryUpdateEasyHighscore(points); // Update the highscore
+                break;
+
+            case Difficulty.Normal:
+                newHighScore = HighscoreManager.GetNormalHighScore(); // Get the new highscore
+                HighscoreManager.TryUpdateNormalHighscore(points); // Update the highscore
+                break;
+
+            case Difficulty.Hard:
+                newHighScore = HighscoreManager.GetHardHighScore(); // Get the new highscore
+                HighscoreManager.TryUpdateHardHighscore(points); // Update the highscore
+                break;
+        }        
 
         _playerLost.text = $"Current Score: {points}\nHighscore: {newHighScore}";
 

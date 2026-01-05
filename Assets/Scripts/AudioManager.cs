@@ -73,8 +73,9 @@ public class AudioManager : MonoBehaviour
 
         if (sceneName == "MainMenuScene")
             next = _titleMusic;
-        else if (sceneName == "LevelScene")
+        else if ((sceneName == "LevelScene") || (sceneName == "HardMode") || (sceneName == "EasyMode"))
             next = _bg;
+
 
         SwitchMusic(next);
     }
