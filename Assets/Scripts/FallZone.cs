@@ -9,6 +9,8 @@ public class FallZone : MonoBehaviour
     [SerializeField] private int fallsToLose = 3;
     [SerializeField] private TextMeshProUGUI _playerLost;
     [SerializeField] private Canvas _endGame;
+    [SerializeField] private Animator playerAnimator;
+
 
     // Making the vars static to share them between the 3 fall zones
     private int fallsCount;
@@ -43,6 +45,15 @@ public class FallZone : MonoBehaviour
         }
 
         fallsCount++;
+
+        if (fallsCount == 2)
+        {
+            if (playerAnimator != null)
+                playerAnimator.SetTrigger("is2strike");
+            else
+                Debug.LogWarning("FallZone: playerAnimator not assigned in Inspector.");
+        }
+
 
         AudioManager.instance.PlayLowerSFXVolume(1, 0.3f);
         AudioManager.instance.PlaySFXPitchAdjusted(1); // Play item fell sound
