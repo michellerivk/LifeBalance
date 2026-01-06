@@ -967,7 +967,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615441605}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8c9d1003659acc4a88ba25347f3c492, type: 3}
   m_Name: 
@@ -3477,6 +3477,7 @@ GameObject:
   - component: {fileID: 1946691574}
   - component: {fileID: 1946691578}
   - component: {fileID: 1946691577}
+  - component: {fileID: 1946691579}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3620,6 +3621,21 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1946691579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946691573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9156e776f73c87749af96683284728a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraZoomByOrientation
+  landscapeOrthoSize: 11
+  portraitOrthoSize: 13
+  zoomSpeed: 4
 --- !u!1 &1948014290
 GameObject:
   m_ObjectHideFlags: 0

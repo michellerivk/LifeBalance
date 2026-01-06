@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 14169744}
   - component: {fileID: 14169747}
   - component: {fileID: 14169748}
+  - component: {fileID: 14169749}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -275,6 +276,21 @@ MonoBehaviour:
   clampMinY: 1
   minY: -2.62
   Cam: {fileID: 14169745}
+--- !u!114 &14169749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14169743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9156e776f73c87749af96683284728a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraZoomByOrientation
+  landscapeOrthoSize: 11
+  portraitOrthoSize: 13
+  zoomSpeed: 4
 --- !u!1 &32016036
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,7 +458,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.453, z: 0}
-  m_LocalScale: {x: 0.17658448, y: 0.180464, z: 1.1279}
+  m_LocalScale: {x: 0.17580645, y: 0.17580645, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 676906151}
@@ -2154,8 +2170,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1290323, y: 1.1290323, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 117310519}
   - {fileID: 1160400155}
@@ -2168,7 +2184,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676906150}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8c9d1003659acc4a88ba25347f3c492, type: 3}
   m_Name: 
