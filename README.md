@@ -49,7 +49,7 @@ Choose your pace:
 <img width="230" height="512" alt="VerticalMenu" src="https://github.com/user-attachments/assets/573202b1-c608-4644-9f4a-ece9abbe66eb" /> <img width="230" height="512" alt="VerticalLoss" src="https://github.com/user-attachments/assets/dd17ad4e-02b9-49df-9868-e951698a415a" /> <img width="230" height="512" alt="VerticalGameplay" src="https://github.com/user-attachments/assets/2454284c-8c15-4317-90e8-22941c7f7481" />
 <img width="512" height="230" alt="HorizontalMenu" src="https://github.com/user-attachments/assets/9c7c9727-1355-4794-98bb-347644e2ac31" /><img width="512" height="230" alt="HorizontalLoss" src="https://github.com/user-attachments/assets/ac6b5e72-b0b4-4ffb-a7c3-8862daba0c26" /><img width="512" height="230" alt="HorizontalGameplay" src="https://github.com/user-attachments/assets/54211a64-cb2b-44ab-a447-68de092c0989" />
 
-
+https://github.com/user-attachments/assets/1978b258-96f3-459a-b0a7-8cb0474cd97f
 
 
 
