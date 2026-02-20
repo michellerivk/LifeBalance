@@ -127,7 +127,7 @@ public class AudioManager : MonoBehaviour
         {
             // Stop to not hear multiple tracks
             StopAllMusic();
-            SetIcon(music, _musicMuted, 80f, 80f);
+            SetIcon(music, _musicMuted, 25f, 25f);
         }
         else
         {
@@ -136,7 +136,7 @@ public class AudioManager : MonoBehaviour
                 _currentMusic.Play();
             }
 
-            SetIcon(music, _musicNotMuted, 80f, 60f);
+            SetIcon(music, _musicNotMuted, 25f, 25f);
         }
 
         Debug.Log("Music Muted: " + isMusicMuted);
@@ -149,11 +149,11 @@ public class AudioManager : MonoBehaviour
 
         if (isSFXMuted)
         {
-            SetIcon(sfx, _sfxMuted, 80f, 80f);
+            SetIcon(sfx, _sfxMuted, 25f, 25f);
         }
         else
         {
-            SetIcon(sfx, _sfxNotMuted, 60f, 80f);
+            SetIcon(sfx, _sfxNotMuted, 25f, 25f);
         }
 
         Debug.Log("SFX Muted: " + isSFXMuted);
@@ -205,11 +205,11 @@ public class AudioManager : MonoBehaviour
     
     public void SetFirstIcon(Image musicImage, Image sfxImage)
     {
-        if (isMusicMuted) SetIcon(musicImage, _musicMuted, 80f, 80f);
-        else SetIcon(musicImage, _musicNotMuted, 80f, 60f);
+        if (isMusicMuted) SetIcon(musicImage, _musicMuted, 25f, 25f);
+        else SetIcon(musicImage, _musicNotMuted, 25f, 25f);
 
-        if (isSFXMuted) SetIcon(sfxImage, _sfxMuted, 80f, 80f);
-        else SetIcon(sfxImage, _sfxNotMuted, 60f, 80f);
+        if (isSFXMuted) SetIcon(sfxImage, _sfxMuted, 25f, 25f);
+        else SetIcon(sfxImage, _sfxNotMuted, 25f, 25f);
     }
     private void SetIcon(Image img, Sprite sprite, float width, float height)
     {

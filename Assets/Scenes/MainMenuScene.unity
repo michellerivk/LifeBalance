@@ -2760,7 +2760,7 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 1
   m_StartCorner: 0
-  m_StartAxis: 1
+  m_StartAxis: 0
   m_CellSize: {x: 321.2, y: 193.6}
   m_Spacing: {x: 15, y: 3}
   m_Constraint: 0
