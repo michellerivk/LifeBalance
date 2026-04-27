@@ -19,10 +19,12 @@ public class MuteAudio : MonoBehaviour
 
     public void PlayButtonSound()
     {
-        AudioManager.instance.PlayButtonSound();
+        if (AudioManager.instance != null)
+            AudioManager.instance.PlayButtonSound();
     }
     public void PlayStartSound()
     {
-        AudioManager.instance.PlayLowerSFXVolume(3, 0.3f);
+        if (AudioManager.instance != null)
+            AudioManager.instance.PlayLowerSFXVolume(3, 0.3f);
     }
 }

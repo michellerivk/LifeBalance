@@ -66,9 +66,11 @@ public class FallZone : MonoBehaviour
                 Debug.LogWarning("FallZone: playerAnimator not assigned in Inspector.");
         }
 
-
-        AudioManager.instance.PlayLowerSFXVolume(1, 0.3f);
-        AudioManager.instance.PlaySFXPitchAdjusted(1); // Play item fell sound
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayLowerSFXVolume(1, 0.3f);
+            AudioManager.instance.PlaySFXPitchAdjusted(1); // Play item fell sound
+        }
 
         if (fallsCount >= fallsToLose) 
         {
@@ -80,8 +82,11 @@ public class FallZone : MonoBehaviour
 
             PlayerLost(points);
 
-            AudioManager.instance.PlayLowerSFXVolume(2, 0.3f);
-            AudioManager.instance.PlaySFX(2); // Play losing sound
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.PlayLowerSFXVolume(2, 0.3f);
+                AudioManager.instance.PlaySFX(2); // Play losing sound
+            }
 
             OnGameOver?.Invoke();
         }

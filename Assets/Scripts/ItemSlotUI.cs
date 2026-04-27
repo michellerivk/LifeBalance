@@ -35,6 +35,7 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         if (_currentData.iconSprite != null)
         {
             iconImage.sprite = _currentData.iconSprite;
+            iconImage.preserveAspect = true;
         }
         else
         {
